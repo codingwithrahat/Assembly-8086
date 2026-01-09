@@ -1,0 +1,42 @@
+.MODEL SMALL
+.STACK 100H
+
+.DATA
+MSG1 DB 0DH, 0AH, 'ENTER A NUMBER: $'
+MSG2 DB 0DH, 0AH, 'GREATER $'
+MSG3 DB 0DH, 0AH, 'SMALLER $'
+
+.CODE
+MAIN PROC
+    
+    MOV AX, @DATA
+    MOV DS, AX
+    
+    LEA DX, MSG1
+    MOV AH, 9
+    INT 21H
+    
+    MOV AH, 1
+    INT 21H
+    MOV BL, AL
+    SUB BL, 30H
+    
+    CMP BL, 5  ; CMP VAR1, VAR2 IS NOT ALLOW
+    JL SMALL   ; JUMP IF BL IS LESS THEN 5
+    
+    LEA DX, MSG2
+    MOV AH, 9
+    INT 21H
+    
+    JMP EXIT        
+    
+    SMALL:
+    LEA DX, MSG3
+    MOV AH, 9
+    INT 21H     
+    
+    EXIT:
+    MOV AH, 4CH
+    INT 21H
+    MAIN ENDP
+END MAIN
