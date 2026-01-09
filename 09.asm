@@ -1,0 +1,34 @@
+.MODEL SMALL
+.STACK 100H
+
+.DATA
+MSG1 DB 0DH, 0AH, 'ENTER A NUMBER: $'
+MSG2 DB 0DH, 0AH, 'GREATER $'
+MSG3 DB 0DH, 0AH, 'SMALLER $'
+
+.CODE
+MAIN PROC
+    
+    MOV AX, @DATA
+    MOV DS, AX
+              
+    RUN:          
+    LEA DX, MSG1
+    MOV AH, 9
+    INT 21H
+    
+    MOV AH, 1
+    INT 21H
+    MOV BL, AL
+    SUB BL, 30H
+    
+    CMP BL, 0; IF USER INPUT 0 THEN IT WILL BE TERMINATE(EXIT)
+    JE EXIT
+    
+    JMP RUN        
+    
+    EXIT:
+    MOV AH, 4CH
+    INT 21H
+    MAIN ENDP
+END MAIN
