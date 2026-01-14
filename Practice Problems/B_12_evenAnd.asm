@@ -23,9 +23,7 @@ MAIN PROC
     SUB AL, 30H
     
     AND AL, 1 
-    
-    CMP AL, 0
-    JE EV  
+    JZ EV
     
     LEA DX,M3
     
