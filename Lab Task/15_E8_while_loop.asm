@@ -1,0 +1,43 @@
+.MODEL SMALL
+.STACK 100H
+.DATA
+M1 DB 0DH,0AH,'ENTER A LINE: $'
+M2 DB 0DH,0AH,'CHARACTER COUNT IS: $'
+.CODE
+MAIN PROC
+    MOV AX,@DATA
+    MOV DS,AX
+
+    LEA DX,M1
+    MOV AH,9
+    INT 21H
+
+    MOV BX,0          
+
+    WHILE_LOOP:
+    MOV AH,1
+    INT 21H           
+
+    CMP AL,0DH
+    JE END_WHILE
+
+    INC BX
+
+    JMP WHILE_LOOP
+
+    END_WHILE:
+    LEA DX,M2
+    MOV AH,9
+    INT 21H
+    
+    MOV AL,BL
+    ADD AL,30H 
+    MOV DL,AL
+    MOV AH,2
+    INT 21H
+
+    MOV AH,4CH
+    INT 21H
+
+MAIN ENDP
+END MAIN
