@@ -27,8 +27,8 @@ A two-player memory-based game.
 - Player 2 then fills another 3×3 grid from memory.
 
 ### Winning Logic:
-- If **Correct > Wrong → Player 1 Wins**
-- If **Wrong > Correct → Player 2 Wins**
+- If **Correct > Wrong → Player 2 Wins**
+- If **Wrong > Correct → Player 1 Wins**
 
 ---
 
